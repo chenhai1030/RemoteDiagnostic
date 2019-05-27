@@ -1,0 +1,33 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.funtv.remotedignostic"
+    android:sharedUserId="android.uid.system">
+
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <receiver android:name="com.funtv.remotedignostic.receive.DiagnosticReceive">
+            <intent-filter>
+                <action android:name="android.intent.action.FUNTV_2_BOOT_COMPLETED" />
+                <action android:name="funshion.intent.action.REMOTE_DIGNOSTIC" />
+                <action android:name="funshion.intent.action.STOP_DIGNOSTIC" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.funtv.remotedignostic.service.DiagnosticService">
+            <intent-filter>
+                <action android:name="funshion.intent.action.REMOTE_DIGNOSTIC" />
+                <action android:name="com.funtv.remotedignostic.service.DiagnosticService"/>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
